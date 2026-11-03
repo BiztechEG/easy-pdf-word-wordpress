@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
 # Builds build/easy-pdf-word.zip, the file uploaded to wordpress.org.
 #
-# The libraries are installed without development packages and copied into
-# vendor-prefixed/ under BiztechEG\EasyPdfWordWP\Vendor\ by Strauss and
-# bin/copy-assets.php. Development files stay out of the zip.
+# The libraries are copied into vendor-prefixed/ under BiztechEG\EasyPdfWordWP\Vendor\
+# by Strauss and bin/copy-assets.php. Development files stay out of the zip.
 #   composer install && composer build
 set -euo pipefail
 
@@ -23,10 +22,11 @@ mkdir -p "$work" "$dist"
 # The committed files only, so local changes stay out.
 git -C "$root" archive HEAD | tar -x -C "$dist"
 
-# The libraries without development packages, prefixed.
+# The libraries from `composer install`, prefixed. Strauss copies only the
+# packages under "require", so development packages stay out.
 cp "$root/composer.json" "$root/composer.lock" "$work/"
-composer install --working-dir="$work" --no-dev --no-interaction --no-progress --no-scripts --quiet
-(cd "$work" && "$root/vendor/bin/strauss" --no-interaction > /dev/null)
+cp -r "$root/vendor" "$work/vendor"
+(cd "$work" && vendor/bin/strauss --no-interaction > /dev/null)
 php "$root/bin/copy-assets.php" "$work" > /dev/null
 mv "$work/vendor-prefixed" "$dist/vendor-prefixed"
 rm -rf "$work"
