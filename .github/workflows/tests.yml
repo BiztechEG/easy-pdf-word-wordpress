@@ -1,0 +1,90 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  tests:
+    name: PHP ${{ matrix.php }} / WordPress ${{ matrix.wp }}
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4', '8.5']
+        wp: ['7.1']
+        include:
+          - php: '8.2'
+            wp: '7.0'
+
+    services:
+      mysql:
+        image: mariadb:11
+        env:
+          MARIADB_DATABASE: wp_tests
+          MARIADB_USER: wp
+          MARIADB_PASSWORD: wp
+          MARIADB_ROOT_PASSWORD: root
+        ports: ['3306:3306']
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s --health-timeout=5s --health-retries=20
+
+    env:
+      WP_TESTS_DB_HOST: 127.0.0.1
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, gd, intl, zip, mysqli
+          coverage: none
+
+      - name: Install WordPress ${{ matrix.wp }} and the libraries
+        run: |
+          composer config platform.php ${{ matrix.php }}
+          composer update --no-interaction --no-progress \
+            johnpbloch/wordpress-core:~${{ matrix.wp }}.0 wp-phpunit/wp-phpunit:~${{ matrix.wp }}.0 --with-all-dependencies
+
+      - name: Prefix the libraries
+        run: composer prefix
+
+      - name: Tests
+        run: composer test
+
+  build:
+    name: Plugin zip
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, gd, intl, zip
+          coverage: none
+
+      - run: composer validate --strict
+
+      - run: composer install --no-interaction --no-progress
+
+      - run: composer audit
+
+      - name: Build
+        run: composer build
+
+      - name: Check the zip
+        run: bash bin/check-zip.sh build/easy-pdf-word.zip
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: easy-pdf-word
+          path: build/easy-pdf-word.zip
