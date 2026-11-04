@@ -23,6 +23,16 @@ Easy PDF & Word makes PDF and Word (.docx) documents in Arabic, English and Turk
 * The invoice goes with the "Completed order" and "Order details" emails, and the credit note with "Refunded order".
 * Prices are before tax. Coupons show as discounts on the lines, and shipping and fees as lines of their own, so the document's total matches the order's.
 
+= Settings =
+
+Under WooCommerce > Easy PDF & Word (or Settings > Easy PDF & Word without WooCommerce):
+
+* The company: name, address, phone, email, tax number, logo and main colour. Empty fields use the site name and the WooCommerce store address.
+* The documents' language (the site's, or Arabic, English or Turkish), digits (0123 or ٠١٢٣), font (Cairo, Tajawal or Noto Naskh Arabic) and PDF engine (mPDF, or Gotenberg).
+* The invoice type, the number prefixes and digits, and the next invoice and credit note numbers.
+* What customers can download, in which order statuses, and which emails carry which document.
+* A sample invoice with the saved settings.
+
 = For developers =
 
 `easy_pdf_word()` gives the document factory of the [Easy PDF & Word library](https://easypdf.biztech-eg.com), with its 12 ready-made templates (invoice, quotation, receipt, contract, certificate and more) or your own:
@@ -53,6 +63,7 @@ Copy a template folder into an `easy-pdf-word` folder in your theme to change it
 
 1. Upload the plugin zip from Plugins > Add New > Upload Plugin, or install it from the plugin directory.
 2. Activate it.
+3. Fill in your company and tax number under WooCommerce > Easy PDF & Word, then open the sample invoice to check it.
 
 The server needs PHP 8.2 or newer with the `mbstring` and `gd` extensions, `zip` for Word files and `intl` for Hijri dates.
 
@@ -66,9 +77,18 @@ No. The bundled libraries are renamed under the plugin's own prefix, so another 
 
 The tax invoice shows one VAT rate: an order with several rates shows their average, and the totals still match the order. The Egyptian layout shows each line's own rate.
 
+= What happens to my invoices if I delete the plugin? =
+
+Deleting the plugin removes its settings and number counters. The invoice and credit note numbers stay in the orders, since customers already have those documents.
+
 = Where are temporary files written? =
 
 To WordPress's temp folder, in an `easy-pdf-word` folder. On shared hosting, set `WP_TEMP_DIR` in `wp-config.php` to a folder of your own account.
+
+== Screenshots ==
+
+1. The settings page.
+2. An Arabic tax invoice with the ZATCA QR code.
 
 == Changelog ==
 

@@ -19,7 +19,7 @@ if [ "$size" -gt $((10 * 1024 * 1024)) ]; then
 	exit 1
 fi
 
-for file in easy-pdf-word.php readme.txt LICENSE src/bootstrap.php vendor-prefixed/autoload.php \
+for file in easy-pdf-word.php uninstall.php readme.txt LICENSE src/bootstrap.php assets/settings.js vendor-prefixed/autoload.php \
 	vendor-prefixed/biztecheg/easy-pdf-word/resources/templates/invoice/template.php \
 	vendor-prefixed/biztecheg/easy-pdf-word/resources/fonts; do
 	if [ ! -e "$plugin/$file" ]; then

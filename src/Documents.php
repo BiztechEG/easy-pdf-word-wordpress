@@ -47,14 +47,23 @@ final class Documents {
 	public static function config(): array {
 		$temp_dir = untrailingslashit( get_temp_dir() ) . '/easy-pdf-word';
 
-		$config = array(
+		$settings = Settings::all();
+		$config   = array(
 			'locale'    => self::locale(),
+			'numerals'  => 'arabic' === $settings['numerals'] ? 'arabic' : 'latin',
 			// WordPress's temp folder: WP_TEMP_DIR when the site sets it.
 			'temp_dir'  => $temp_dir,
 			'pdf'       => array(
-				'drivers' => array(
-					'mpdf' => array( 'temp_dir' => $temp_dir . '/mpdf' ),
+				'driver'   => self::engine( $settings ),
+				'fallback' => 'mpdf',
+				'drivers'  => array(
+					'mpdf'      => array( 'temp_dir' => $temp_dir . '/mpdf' ),
+					'gotenberg' => array( 'url' => (string) $settings['gotenberg_url'] ),
 				),
+			),
+			'fonts'     => array(
+				'default'     => (string) $settings['font'],
+				'default_ltr' => (string) $settings['font'],
 			),
 			'images'    => array(
 				// The logo and stamps come from the media library.
@@ -63,10 +72,9 @@ final class Documents {
 			),
 			'templates' => array( 'paths' => self::template_paths() ),
 			'theme'     => array(
-				'company' => array(
-					// get_bloginfo() escapes for HTML; the templates escape again.
-					'name' => wp_specialchars_decode( get_bloginfo( 'name' ), ENT_QUOTES ),
-				),
+				'primary' => sanitize_hex_color( (string) $settings['primary_color'] ) ?: '#0F766E',
+				'logo'    => Settings::logo_path(),
+				'company' => Settings::company(),
 			),
 		);
 
@@ -78,12 +86,24 @@ final class Documents {
 		return (array) apply_filters( 'easy_pdf_word_config', $config );
 	}
 
+	/** mPDF, or Gotenberg when it is chosen and has an address. */
+	private static function engine( array $settings ): string {
+		return 'gotenberg' === $settings['engine'] && '' !== (string) $settings['gotenberg_url'] ? 'gotenberg' : 'mpdf';
+	}
+
 	/**
-	 * The site language when the templates have it, else English. A shop
-	 * manager whose own profile language differs still gets documents in the
-	 * site language; WooCommerce emails switch to the customer's language.
+	 * The language setting, or the site language when the templates have it,
+	 * else English. A shop manager whose own profile language differs still
+	 * gets documents in the site language; WooCommerce emails switch to the
+	 * customer's language.
 	 */
 	public static function locale(): string {
+		$chosen = (string) Settings::get( 'language' );
+
+		if ( in_array( $chosen, self::LOCALES, true ) ) {
+			return $chosen;
+		}
+
 		$language = strtolower( substr( get_locale(), 0, 2 ) );
 
 		return in_array( $language, self::LOCALES, true ) ? $language : 'en';

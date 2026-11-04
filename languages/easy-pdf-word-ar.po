@@ -23,9 +23,240 @@ msgstr ""
 "تحتاج إضافة Easy PDF & Word إلى PHP 8.2 أو أحدث. اطلب من شركة الاستضافة "
 "تحديث PHP."
 
-#: src/WooCommerce/AdminOrders.php:42 src/WooCommerce/MyAccount.php:62
+#: src/Admin/SettingsPage.php:55 src/Admin/SettingsPage.php:223
+msgid "Easy PDF & Word"
+msgstr "Easy PDF & Word"
+
+#: src/Admin/SettingsPage.php:79
+msgid "Settings"
+msgstr "الإعدادات"
+
+#: src/Admin/SettingsPage.php:152
+msgid "Gotenberg needs its address, so the PDF engine stays mPDF."
+msgstr "يحتاج Gotenberg إلى عنوانه، لذا يبقى محرك PDF هو mPDF."
+
+#. translators: %d: the next number as it is now.
+#: src/Admin/SettingsPage.php:206
+#, php-format
+msgid ""
+"A next number can only go up, so two documents never share a number. It "
+"stays %d."
+msgstr "لا يمكن إلا زيادة الرقم التالي، حتى لا يتكرر رقم مستندين. يبقى %d."
+
+#: src/Admin/SettingsPage.php:218 src/Admin/SettingsPage.php:364
+msgid "Sorry, you are not allowed to access this page."
+msgstr "عذراً، لا يُسمح لك بالوصول إلى هذه الصفحة."
+
+#: src/Admin/SettingsPage.php:234
+msgid "Company"
+msgstr "الشركة"
+
+#: src/Admin/SettingsPage.php:234
+msgid ""
+"Shown on every document. Leave a field empty to use the site name and the "
+"WooCommerce store address."
+msgstr "تظهر في كل مستند. اترك الحقل فارغاً لاستخدام اسم الموقع وعنوان متجر WooCommerce."
+
+#: src/Admin/SettingsPage.php:235
+msgid "Name"
+msgstr "الاسم"
+
+#: src/Admin/SettingsPage.php:236
+msgid "Address"
+msgstr "العنوان"
+
+#: src/Admin/SettingsPage.php:237
+msgid "Phone"
+msgstr "الهاتف"
+
+#: src/Admin/SettingsPage.php:238
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+#: src/Admin/SettingsPage.php:239
+msgid "Tax number"
+msgstr "الرقم الضريبي"
+
+#: src/Admin/SettingsPage.php:239
+msgid ""
+"The VAT number (Saudi Arabia), or the tax registration number that the "
+"Egyptian invoice needs."
+msgstr "رقم ضريبة القيمة المضافة (السعودية)، أو رقم التسجيل الضريبي الذي تحتاجه الفاتورة المصرية."
+
+#: src/Admin/SettingsPage.php:241
+msgid "Main colour"
+msgstr "اللون الرئيسي"
+
+#: src/Admin/SettingsPage.php:244 src/WooCommerce/AdminOrders.php:42
+#: src/WooCommerce/MyAccount.php:62
 msgid "Documents"
 msgstr "المستندات"
+
+#: src/Admin/SettingsPage.php:247
+msgid "Language"
+msgstr "اللغة"
+
+#: src/Admin/SettingsPage.php:250
+msgid "The site language (the customer's in emails)"
+msgstr "لغة الموقع (ولغة العميل في رسائل البريد)"
+
+#: src/Admin/SettingsPage.php:258
+msgid "Digits"
+msgstr "الأرقام"
+
+#: src/Admin/SettingsPage.php:267
+msgid "Font"
+msgstr "الخط"
+
+#: src/Admin/SettingsPage.php:277
+msgid "PDF engine"
+msgstr "محرك PDF"
+
+#: src/Admin/SettingsPage.php:280
+msgid "mPDF (built in)"
+msgstr "mPDF (مدمج)"
+
+#: src/Admin/SettingsPage.php:281
+msgid "Gotenberg (Chromium as a service)"
+msgstr "Gotenberg (‏Chromium كخدمة)"
+
+#: src/Admin/SettingsPage.php:283
+msgid ""
+"mPDF works on any host. Gotenberg draws pages as Chrome does; when it cannot "
+"be reached, mPDF is used."
+msgstr "يعمل mPDF على أي استضافة. يرسم Gotenberg الصفحات كما يرسمها Chrome، وإذا تعذّر الوصول إليه يُستخدم mPDF."
+
+#: src/Admin/SettingsPage.php:285
+msgid "Gotenberg address"
+msgstr "عنوان Gotenberg"
+
+#: src/Admin/SettingsPage.php:302
+msgid "Invoices"
+msgstr "الفواتير"
+
+#: src/Admin/SettingsPage.php:305 src/WooCommerce/MyAccount.php:30
+#: src/WooCommerce/OrderDocument.php:27
+msgid "Invoice"
+msgstr "الفاتورة"
+
+#: src/Admin/SettingsPage.php:308
+msgid "Tax invoice"
+msgstr "فاتورة ضريبية"
+
+#: src/Admin/SettingsPage.php:309
+msgid "Tax invoice with the ZATCA QR code (Saudi Arabia)"
+msgstr "فاتورة ضريبية برمز QR الخاص بهيئة الزكاة (السعودية)"
+
+#: src/Admin/SettingsPage.php:310
+msgid "Egyptian e-invoice layout"
+msgstr "شكل الفاتورة الإلكترونية المصرية"
+
+#: src/Admin/SettingsPage.php:313
+msgid "Invoice number prefix"
+msgstr "بادئة رقم الفاتورة"
+
+#: src/Admin/SettingsPage.php:313
+msgid "{year} becomes the current year, for example INV-{year}-."
+msgstr "تُستبدل {year} بالسنة الحالية، مثل INV-{year}-."
+
+#: src/Admin/SettingsPage.php:314
+msgid "Credit note number prefix"
+msgstr "بادئة رقم الإشعار الدائن"
+
+#: src/Admin/SettingsPage.php:315
+msgid "4 gives INV-0001."
+msgstr "‏4 تعطي INV-0001."
+
+#: src/Admin/SettingsPage.php:315
+msgid "Digits in a number"
+msgstr "عدد خانات الرقم"
+
+#: src/Admin/SettingsPage.php:316
+msgid "Next invoice number"
+msgstr "رقم الفاتورة التالية"
+
+#: src/Admin/SettingsPage.php:317
+msgid "Next credit note number"
+msgstr "رقم الإشعار الدائن التالي"
+
+#: src/Admin/SettingsPage.php:327
+msgid "Customers"
+msgstr "العملاء"
+
+#: src/Admin/SettingsPage.php:328
+msgid "In My account"
+msgstr "في حسابي"
+
+#: src/Admin/SettingsPage.php:328
+msgid "The documents customers can download for their own orders."
+msgstr "المستندات التي يمكن للعملاء تنزيلها لطلباتهم."
+
+#: src/Admin/SettingsPage.php:329
+msgid ""
+"Before then, customers cannot download the invoice and emails do not carry "
+"it."
+msgstr "قبل ذلك لا يمكن للعملاء تنزيل الفاتورة، ولا تُرفق برسائل البريد."
+
+#: src/Admin/SettingsPage.php:329
+msgid "Invoice available when the order is"
+msgstr "تتاح الفاتورة عندما تكون حالة الطلب"
+
+#: src/Admin/SettingsPage.php:332
+msgid "Emails"
+msgstr "رسائل البريد"
+
+#: src/Admin/SettingsPage.php:332
+msgid "The WooCommerce emails each document is attached to, as a PDF."
+msgstr "رسائل WooCommerce التي يُرفق بها كل مستند بصيغة PDF."
+
+#: src/Admin/SettingsPage.php:340
+msgid "Sample invoice"
+msgstr "فاتورة تجريبية"
+
+#: src/Admin/SettingsPage.php:341
+msgid ""
+"Opens a sample invoice with the saved settings. Save your changes first."
+msgstr "يفتح فاتورة تجريبية بالإعدادات المحفوظة. احفظ تغييراتك أولاً."
+
+#: src/Admin/SettingsPage.php:342
+msgid "Open the sample invoice (PDF)"
+msgstr "افتح الفاتورة التجريبية (PDF)"
+
+#. translators: %s: a WooCommerce email, such as Completed order.
+#: src/Admin/SettingsPage.php:410
+#, php-format
+msgid "%s (to the customer)"
+msgstr "%s (إلى العميل)"
+
+#. translators: %s: a WooCommerce email, such as New order.
+#: src/Admin/SettingsPage.php:412
+#, php-format
+msgid "%s (to the shop)"
+msgstr "%s (إلى المتجر)"
+
+#: src/Admin/SettingsPage.php:498
+msgid "Can only go up."
+msgstr "لا يمكن إلا زيادته."
+
+#: src/Admin/SettingsPage.php:551 src/Admin/SettingsPage.php:558
+msgid "Logo"
+msgstr "الشعار"
+
+#: src/Admin/SettingsPage.php:552
+msgid "Use this image"
+msgstr "استخدم هذه الصورة"
+
+#: src/Admin/SettingsPage.php:553
+msgid "Choose an image"
+msgstr "اختر صورة"
+
+#: src/Admin/SettingsPage.php:555
+msgid "Remove"
+msgstr "إزالة"
+
+#: src/Admin/SettingsPage.php:558
+msgid "A PNG or JPEG from the media library."
+msgstr "صورة PNG أو JPEG من مكتبة الوسائط."
 
 #: src/WooCommerce/AdminOrders.php:55
 msgid "Save the order first."
@@ -81,10 +312,6 @@ msgstr "تعذّر إنشاء المستند. يُرجى التواصل مع ا�
 msgid "%1$s of order %2$s was not attached: %3$s"
 msgstr "تعذّر إرفاق %1$s للطلب %2$s: %3$s"
 
-#: src/WooCommerce/MyAccount.php:30 src/WooCommerce/OrderDocument.php:27
-msgid "Invoice"
-msgstr "الفاتورة"
-
 #: src/WooCommerce/OrderData.php:77
 msgid ""
 "The Egyptian invoice needs your tax registration number. Add it in the Easy "
@@ -97,11 +324,11 @@ msgstr ""
 msgid "This order has nothing left to deliver: all its items were refunded."
 msgstr "لم يتبقَّ في هذا الطلب شيء لتسليمه: استُردت جميع أصنافه."
 
-#: src/WooCommerce/OrderData.php:198
+#: src/WooCommerce/OrderData.php:183
 msgid "Customer"
 msgstr "العميل"
 
-#: src/WooCommerce/OrderData.php:339
+#: src/WooCommerce/OrderData.php:324
 msgid "Refund"
 msgstr "استرداد"
 
@@ -119,11 +346,6 @@ msgid ""
 "file."
 msgstr ""
 "مكتبات إضافة Easy PDF & Word غير موجودة. ثبّت الإضافة من ملف zip الخاص بها."
-
-#. Plugin Name of the plugin
-#: easy-pdf-word.php
-msgid "Easy PDF & Word"
-msgstr "Easy PDF & Word"
 
 #. Description of the plugin
 #: easy-pdf-word.php

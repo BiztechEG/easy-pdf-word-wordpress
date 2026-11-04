@@ -19,8 +19,239 @@ msgstr ""
 msgid "Easy PDF & Word needs PHP 8.2 or newer. Ask your host to update PHP."
 msgstr ""
 
-#: src/WooCommerce/AdminOrders.php:42 src/WooCommerce/MyAccount.php:62
+#: src/Admin/SettingsPage.php:55 src/Admin/SettingsPage.php:223
+msgid "Easy PDF & Word"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:79
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:152
+msgid "Gotenberg needs its address, so the PDF engine stays mPDF."
+msgstr ""
+
+#. translators: %d: the next number as it is now.
+#: src/Admin/SettingsPage.php:206
+#, php-format
+msgid ""
+"A next number can only go up, so two documents never share a number. It "
+"stays %d."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:218 src/Admin/SettingsPage.php:364
+msgid "Sorry, you are not allowed to access this page."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:234
+msgid "Company"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:234
+msgid ""
+"Shown on every document. Leave a field empty to use the site name and the "
+"WooCommerce store address."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:235
+msgid "Name"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:236
+msgid "Address"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:237
+msgid "Phone"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:238
+msgid "Email"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:239
+msgid "Tax number"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:239
+msgid ""
+"The VAT number (Saudi Arabia), or the tax registration number that the "
+"Egyptian invoice needs."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:241
+msgid "Main colour"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:244 src/WooCommerce/AdminOrders.php:42
+#: src/WooCommerce/MyAccount.php:62
 msgid "Documents"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:247
+msgid "Language"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:250
+msgid "The site language (the customer's in emails)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:258
+msgid "Digits"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:267
+msgid "Font"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:277
+msgid "PDF engine"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:280
+msgid "mPDF (built in)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:281
+msgid "Gotenberg (Chromium as a service)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:283
+msgid ""
+"mPDF works on any host. Gotenberg draws pages as Chrome does; when it cannot "
+"be reached, mPDF is used."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:285
+msgid "Gotenberg address"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:302
+msgid "Invoices"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:305 src/WooCommerce/MyAccount.php:30
+#: src/WooCommerce/OrderDocument.php:27
+msgid "Invoice"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:308
+msgid "Tax invoice"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:309
+msgid "Tax invoice with the ZATCA QR code (Saudi Arabia)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:310
+msgid "Egyptian e-invoice layout"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:313
+msgid "Invoice number prefix"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:313
+msgid "{year} becomes the current year, for example INV-{year}-."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:314
+msgid "Credit note number prefix"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:315
+msgid "4 gives INV-0001."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:315
+msgid "Digits in a number"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:316
+msgid "Next invoice number"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:317
+msgid "Next credit note number"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:327
+msgid "Customers"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:328
+msgid "In My account"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:328
+msgid "The documents customers can download for their own orders."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:329
+msgid ""
+"Before then, customers cannot download the invoice and emails do not carry "
+"it."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:329
+msgid "Invoice available when the order is"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:332
+msgid "Emails"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:332
+msgid "The WooCommerce emails each document is attached to, as a PDF."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:340
+msgid "Sample invoice"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:341
+msgid ""
+"Opens a sample invoice with the saved settings. Save your changes first."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:342
+msgid "Open the sample invoice (PDF)"
+msgstr ""
+
+#. translators: %s: a WooCommerce email, such as Completed order.
+#: src/Admin/SettingsPage.php:410
+#, php-format
+msgid "%s (to the customer)"
+msgstr ""
+
+#. translators: %s: a WooCommerce email, such as New order.
+#: src/Admin/SettingsPage.php:412
+#, php-format
+msgid "%s (to the shop)"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:498
+msgid "Can only go up."
+msgstr ""
+
+#: src/Admin/SettingsPage.php:551 src/Admin/SettingsPage.php:558
+msgid "Logo"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:552
+msgid "Use this image"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:553
+msgid "Choose an image"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:555
+msgid "Remove"
+msgstr ""
+
+#: src/Admin/SettingsPage.php:558
+msgid "A PNG or JPEG from the media library."
 msgstr ""
 
 #: src/WooCommerce/AdminOrders.php:55
@@ -77,10 +308,6 @@ msgstr ""
 msgid "%1$s of order %2$s was not attached: %3$s"
 msgstr ""
 
-#: src/WooCommerce/MyAccount.php:30 src/WooCommerce/OrderDocument.php:27
-msgid "Invoice"
-msgstr ""
-
 #: src/WooCommerce/OrderData.php:77
 msgid ""
 "The Egyptian invoice needs your tax registration number. Add it in the Easy "
@@ -91,11 +318,11 @@ msgstr ""
 msgid "This order has nothing left to deliver: all its items were refunded."
 msgstr ""
 
-#: src/WooCommerce/OrderData.php:198
+#: src/WooCommerce/OrderData.php:183
 msgid "Customer"
 msgstr ""
 
-#: src/WooCommerce/OrderData.php:339
+#: src/WooCommerce/OrderData.php:324
 msgid "Refund"
 msgstr ""
 
@@ -111,11 +338,6 @@ msgstr ""
 msgid ""
 "Easy PDF & Word is missing its libraries. Install the plugin from its zip "
 "file."
-msgstr ""
-
-#. Plugin Name of the plugin
-#: easy-pdf-word.php
-msgid "Easy PDF & Word"
 msgstr ""
 
 #. Description of the plugin

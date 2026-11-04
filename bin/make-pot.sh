@@ -24,6 +24,10 @@ xgettext --language=PHP --from-code=UTF-8 --add-comments=translators: --sort-by-
 	# The plugin header, which WordPress translates on the Plugins screen.
 	for field in "Plugin Name" Description; do
 		value=$(sed -n "s/^ \* $field: *//p" easy-pdf-word.php)
+		# Already in the code's strings.
+		if grep -qxF "msgid \"${value//\"/\\\"}\"" "$pot.tmp"; then
+			continue
+		fi
 		printf '\n#. %s of the plugin\n#: easy-pdf-word.php\nmsgid "%s"\nmsgstr ""\n' "$field" "${value//\"/\\\"}"
 	done
 } > "$pot"
