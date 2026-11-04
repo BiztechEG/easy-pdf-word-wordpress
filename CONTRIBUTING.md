@@ -23,6 +23,12 @@ Then:
 composer test
 ```
 
+The WooCommerce tests need WooCommerce: unzip a release from https://github.com/woocommerce/woocommerce/releases and point `WC_DIR` at its folder. Without it they are skipped.
+
+```bash
+WC_DIR=/path/to/woocommerce composer test
+```
+
 The database is emptied on every run, so never point it at a site's database.
 
 ## The plugin zip
