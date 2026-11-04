@@ -24,6 +24,8 @@ class EmailsTest extends TestCase {
 		$this->assertSame( 'invoice-INV-0001.pdf', basename( $attachments[1] ) );
 		$this->assertStringStartsWith( '%PDF', (string) file_get_contents( $attachments[1] ) );
 		$this->assertStringStartsWith( untrailingslashit( get_temp_dir() ) . '/easy-pdf-word/mail-', $attachments[1] );
+		$this->assertSame( '700', decoct( fileperms( dirname( $attachments[1] ) ) & 0777 ), 'Other accounts cannot open the folder.' );
+		$this->assertSame( '600', decoct( fileperms( $attachments[1] ) & 0777 ) );
 
 		Emails::clean_up();
 		$this->assertFileDoesNotExist( $attachments[1] );

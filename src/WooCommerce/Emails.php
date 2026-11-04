@@ -4,6 +4,7 @@ namespace BiztechEG\EasyPdfWordWP\WooCommerce;
 
 use BiztechEG\EasyPdfWordWP\Documents;
 use BiztechEG\EasyPdfWordWP\Settings;
+use RuntimeException;
 use Throwable;
 use WC_Order;
 
@@ -70,11 +71,19 @@ final class Emails {
 		try {
 			$file = OrderDocument::file( $type, $order, $refund );
 			$dir  = Documents::config()['temp_dir'] . '/mail-' . wp_generate_password( 12, false );
+
+			if ( ! wp_mkdir_p( $dir ) ) {
+				throw new RuntimeException( esc_html( "Cannot create the folder [{$dir}]." ) );
+			}
+
+			// The temp folder may be shared with other accounts: only the site's own user opens the customer's document.
+			chmod( $dir, 0700 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod -- a temp folder, not managed by WP_Filesystem.
 			$path = $file->save( $dir . '/' . $file->filename() );
+			chmod( $path, 0600 ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_chmod -- as above.
 		} catch ( Throwable $e ) {
 			// The email still goes out, without the document.
 			/* translators: 1: the document, such as Invoice, 2: the order number, 3: the reason. */
-			do_action( 'easy_pdf_word_warning', sprintf( __( '%1$s of order %2$s was not attached: %3$s', 'easy-pdf-word' ), OrderDocument::label( $type ), $order->get_order_number(), $e->getMessage() ) );
+			do_action( 'easy_pdf_word_warning', sprintf( __( '%1$s of order %2$s was not attached: %3$s', 'easy-pdf-word' ), OrderDocument::label( $type ), $order->get_order_number(), wp_specialchars_decode( $e->getMessage(), ENT_QUOTES ) ) );
 
 			return null;
 		}
