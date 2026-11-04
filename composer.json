@@ -25,6 +25,7 @@
         "brianhenryie/strauss": "^0.22",
         "johnpbloch/wordpress-core": "^7.0",
         "phpunit/phpunit": "^9.6",
+        "wp-coding-standards/wpcs": "^3.4",
         "wp-phpunit/wp-phpunit": "^7.0",
         "yoast/phpunit-polyfills": "^2.0 || ^3.0 || ^4.0"
     },
@@ -39,7 +40,8 @@
             "@php bin/copy-assets.php"
         ],
         "test": "phpunit",
-        "build": "bash bin/build-zip.sh"
+        "build": "bash bin/build-zip.sh",
+        "lint": "phpcs"
     },
     "extra": {
         "strauss": {
@@ -56,7 +58,10 @@
         "platform": {
             "php": "8.2.0"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "minimum-stability": "stable",
     "prefer-stable": true
