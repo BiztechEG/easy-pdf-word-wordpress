@@ -28,7 +28,7 @@ for file in easy-pdf-word.php uninstall.php readme.txt LICENSE src/bootstrap.php
 	fi
 done
 
-for file in composer.json phpcs.xml.dist phpunit.xml.dist tests bin vendor AGENTS.md; do
+for file in composer.json phpcs.xml.dist phpunit.xml.dist tests bin vendor AGENTS.md .wordpress-org; do
 	if [ -e "$plugin/$file" ]; then
 		echo "Should not be in the zip: $file" >&2
 		exit 1
