@@ -23,6 +23,7 @@ final class Plugin {
 		add_action( 'switch_locale', array( Documents::class, 'reset' ) );
 		add_action( 'restore_previous_locale', array( Documents::class, 'reset' ) );
 
+		Admin\SettingsPage::register();
 		WooCommerce\WooCommerce::boot();
 	}
 
