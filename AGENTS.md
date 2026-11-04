@@ -22,7 +22,12 @@ License GPL-2.0-or-later (wordpress.org requires GPL, and mPDF is GPL).
   autoloader for `BiztechEG\EasyPdfWordWP\`.
 - `src/functions.php` — public functions (`easy_pdf_word()`).
 - `src/Documents.php` — builds the core's factory from WordPress settings.
-- `src/Settings.php` — the plugin's settings (option `easy_pdf_word_settings`) with defaults.
+- `src/Settings.php` — the plugin's settings (option `easy_pdf_word_settings`) with defaults,
+  and the company details used by every document.
+- `src/Admin/SettingsPage.php` — the settings page (Settings API; under WooCommerce
+  with `manage_woocommerce`, else under Settings with `manage_options`), and the
+  sample invoice. `assets/settings.js` is its logo picker.
+- `uninstall.php` — removes the settings and counters; invoice numbers stay in orders.
 - `src/WooCommerce/` — loaded only when WooCommerce is active:
   `OrderData` (order → template data), `Numbers` (sequential invoice and
   credit note numbers in order meta), `OrderDocument` (type → template),
