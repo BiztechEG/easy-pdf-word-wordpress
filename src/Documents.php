@@ -78,9 +78,13 @@ final class Documents {
 		return (array) apply_filters( 'easy_pdf_word_config', $config );
 	}
 
-	/** The site language when the templates have it, else English. */
+	/**
+	 * The site language when the templates have it, else English. A shop
+	 * manager whose own profile language differs still gets documents in the
+	 * site language; WooCommerce emails switch to the customer's language.
+	 */
 	public static function locale(): string {
-		$language = strtolower( substr( determine_locale(), 0, 2 ) );
+		$language = strtolower( substr( get_locale(), 0, 2 ) );
 
 		return in_array( $language, self::LOCALES, true ) ? $language : 'en';
 	}
