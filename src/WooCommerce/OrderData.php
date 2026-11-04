@@ -168,24 +168,9 @@ final class OrderData {
 		);
 	}
 
-	/** The shop: the site name, the store address and the tax number setting. */
+	/** The shop: the company settings, else the site name and the store address. */
 	public static function seller(): array {
-		$address = WC()->countries->get_formatted_address(
-			array(
-				'address_1' => (string) get_option( 'woocommerce_store_address' ),
-				'address_2' => (string) get_option( 'woocommerce_store_address_2' ),
-				'city'      => (string) get_option( 'woocommerce_store_city' ),
-				'postcode'  => (string) get_option( 'woocommerce_store_postcode' ),
-				'country'   => strtok( (string) get_option( 'woocommerce_default_country' ), ':' ),
-			),
-			self::separator()
-		);
-
-		return array(
-			'name'       => self::text( get_bloginfo( 'name' ) ),
-			'address'    => self::text( $address ),
-			'tax_number' => trim( (string) Settings::get( 'tax_number' ) ),
-		);
+		return array_map( array( self::class, 'text' ), Settings::company() );
 	}
 
 	/** The customer: the billing company or name, and the billing address. */
