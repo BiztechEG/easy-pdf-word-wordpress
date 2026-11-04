@@ -3,12 +3,12 @@
  * Makes an Arabic PDF invoice and a Word file with the libraries from a built
  * plugin, outside WordPress, and checks that only prefixed classes were loaded.
  *
- * php bin/smoke-test.php path/to/easy-pdf-word
+ * Usage: php bin/smoke-test.php path/to/easy-pdf-word
  */
 
-$plugin = rtrim( $argv[1] ?? '', '/' );
+$plugin_dir = rtrim( $argv[1] ?? '', '/' );
 
-require $plugin . '/vendor-prefixed/autoload.php';
+require $plugin_dir . '/vendor-prefixed/autoload.php';
 
 $factory_class = 'BiztechEG\\EasyPdfWordWP\\Vendor\\BiztechEG\\EasyPdfWord\\EasyPdfWord';
 $temp          = sys_get_temp_dir() . '/easy-pdf-word-smoke-' . bin2hex( random_bytes( 4 ) );

@@ -67,6 +67,24 @@ jobs:
       - name: Tests
         run: composer test
 
+  coding-standards:
+    name: WordPress coding standards
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          coverage: none
+          tools: cs2pr
+
+      - run: composer install --no-interaction --no-progress
+
+      - name: PHPCS (WordPress-Extra, security and i18n rules)
+        run: vendor/bin/phpcs -q --report=checkstyle | cs2pr
+
   build:
     name: Plugin zip
     runs-on: ubuntu-latest
@@ -91,6 +109,11 @@ jobs:
 
       - name: Check the zip
         run: bash bin/check-zip.sh build/easy-pdf-word.zip
+
+      - name: Plugin Check (the checks of the wordpress.org plugin directory)
+        uses: wordpress/plugin-check-action@v1
+        with:
+          build-dir: build/easy-pdf-word
 
       - uses: actions/upload-artifact@v4
         with:

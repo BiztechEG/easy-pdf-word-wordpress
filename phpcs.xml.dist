@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<ruleset name="Easy PDF and Word">
+	<description>WordPress coding standards for the plugin's own code.</description>
+
+	<file>easy-pdf-word.php</file>
+	<file>uninstall.php</file>
+	<file>src</file>
+	<file>tests</file>
+	<file>bin</file>
+
+	<arg name="extensions" value="php"/>
+	<arg name="colors"/>
+	<arg value="sp"/>
+
+	<config name="minimum_wp_version" value="7.0"/>
+	<config name="testVersion" value="8.2-"/>
+
+	<rule ref="WordPress-Extra">
+		<!-- PSR-4 class files (Plugin.php), not class-plugin.php. -->
+		<exclude name="WordPress.Files.FileName"/>
+	</rule>
+	<rule ref="WordPress-Docs">
+		<!-- Short docblocks are enough for private helpers. -->
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+		<exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+		<exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+		<exclude name="Squiz.Commenting.VariableComment.Missing"/>
+		<exclude name="Squiz.Commenting.ClassComment.Missing"/>
+		<exclude name="Squiz.Commenting.FileComment"/>
+		<exclude name="Generic.Commenting.DocComment.MissingShort"/>
+		<exclude name="Squiz.Commenting.FunctionCommentThrowTag.Missing"/>
+		<exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="easy-pdf-word"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- WooCommerce's capabilities. -->
+	<rule ref="WordPress.WP.Capabilities">
+		<properties>
+			<property name="custom_capabilities" type="array">
+				<element value="edit_shop_orders"/>
+				<element value="manage_woocommerce"/>
+			</property>
+		</properties>
+	</rule>
+
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="easy_pdf_word"/>
+				<element value="EASY_PDF_WORD"/>
+				<element value="BiztechEG\EasyPdfWordWP"/>
+			</property>
+		</properties>
+	</rule>
+
+	<!-- Tests and build scripts run outside WordPress requests. -->
+	<rule ref="WordPress-Docs">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+	<rule ref="Universal.Operators.DisallowShortTernary">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.Security">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.WP.AlternativeFunctions">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+	<rule ref="WordPress.PHP.DevelopmentFunctions">
+		<exclude-pattern>/tests/*</exclude-pattern>
+		<exclude-pattern>/bin/*</exclude-pattern>
+	</rule>
+</ruleset>

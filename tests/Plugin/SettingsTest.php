@@ -129,6 +129,7 @@ class SettingsTest extends WP_UnitTestCase {
 		$this->assertSame( "Line 1\nLine 2", $settings['company_address'] );
 		$this->assertSame( '', $settings['company_email'] );
 		$this->assertSame( '#0F766E', $settings['primary_color'] );
+		$this->assertSame( '#0F766E', SettingsPage::sanitize( array( 'primary_color' => '' ) )['primary_color'], 'An empty colour is the default.' );
 		$this->assertSame( '', $settings['language'] );
 		$this->assertSame( 'cairo', $settings['font'] );
 		$this->assertSame( 'arabic', $settings['numerals'] );

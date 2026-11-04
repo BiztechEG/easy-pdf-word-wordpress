@@ -101,7 +101,7 @@ final class Numbers {
 		return self::result( $number, (string) $order->get_meta( self::meta( $sequence, 'date' ) ) );
 	}
 
-	/** date: 2026-11-04, time: 2026-11-04 18:30:00, in the site's time zone. */
+	/** The number with its date (2026-11-04) and time (2026-11-04 18:30:00), in the site's time zone. */
 	private static function result( string $number, string $datetime ): array {
 		return array(
 			'number' => $number,

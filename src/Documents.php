@@ -72,7 +72,7 @@ final class Documents {
 			),
 			'templates' => array( 'paths' => self::template_paths() ),
 			'theme'     => array(
-				'primary' => sanitize_hex_color( (string) $settings['primary_color'] ) ?: '#0F766E',
+				'primary' => self::color( (string) $settings['primary_color'] ),
 				'logo'    => Settings::logo_path(),
 				'company' => Settings::company(),
 			),
@@ -86,7 +86,14 @@ final class Documents {
 		return (array) apply_filters( 'easy_pdf_word_config', $config );
 	}
 
-	/** mPDF, or Gotenberg when it is chosen and has an address. */
+	/** A hex colour, or the default teal for anything else (an empty or bad value). */
+	private static function color( string $color ): string {
+		$color = sanitize_hex_color( $color );
+
+		return is_string( $color ) && '' !== $color ? $color : '#0F766E';
+	}
+
+	/** The PDF engine: mPDF, or Gotenberg when it is chosen and has an address. */
 	private static function engine( array $settings ): string {
 		return 'gotenberg' === $settings['engine'] && '' !== (string) $settings['gotenberg_url'] ? 'gotenberg' : 'mpdf';
 	}

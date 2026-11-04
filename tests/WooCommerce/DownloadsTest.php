@@ -102,7 +102,7 @@ class DownloadsTest extends TestCase {
 		);
 		wp_set_current_user( $this->customer );
 
-		$query = self::query( Downloads::url( 'invoice', $order ) );
+		$query   = self::query( Downloads::url( 'invoice', $order ) );
 		$changes = array(
 			array( 'document' => 'payslip' ),
 			array( 'document' => array( 'invoice' ) ),

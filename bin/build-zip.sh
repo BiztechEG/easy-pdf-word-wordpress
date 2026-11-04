@@ -34,7 +34,7 @@ rm -rf "$work"
 cd "$dist"
 
 # Files that are only for development.
-rm -rf AGENTS.md CONTRIBUTING.md README.md composer.json composer.lock phpunit.xml.dist tests bin .github .gitignore
+rm -rf AGENTS.md CONTRIBUTING.md README.md composer.json composer.lock phpunit.xml.dist phpcs.xml.dist tests bin .github .gitignore
 
 # Development files of the bundled packages.
 find vendor-prefixed -type d \( -iname tests -o -iname docs -o -iname samples -o -name .github \) -prune -exec rm -rf {} +

@@ -34,7 +34,7 @@ if ( ! is_file( $root . '/vendor-prefixed/autoload.php' ) ) {
 	exit( 1 );
 }
 
-putenv( 'WP_PHPUNIT__TESTS_CONFIG=' . __DIR__ . '/wp-tests-config.php' );
+putenv( 'WP_PHPUNIT__TESTS_CONFIG=' . __DIR__ . '/wp-tests-config.php' ); // phpcs:ignore WordPress.PHP.DiscouragedPHPFunctions.runtime_configuration_putenv -- how wp-phpunit finds its config.
 
 $tests_dir = getenv( 'WP_PHPUNIT__DIR' ) ?: $root . '/vendor/wp-phpunit/wp-phpunit';
 

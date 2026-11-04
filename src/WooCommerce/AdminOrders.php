@@ -47,9 +47,13 @@ final class AdminOrders {
 		);
 	}
 
-	/** @param WC_Order|WP_Post $object The order, or its post without WooCommerce's order tables. */
-	public static function render_box( $object ): void {
-		$order = $object instanceof WC_Order ? $object : wc_get_order( $object instanceof WP_Post ? $object->ID : 0 );
+	/**
+	 * The box's content.
+	 *
+	 * @param WC_Order|WP_Post $order_or_post The order, or its post without WooCommerce's order tables.
+	 */
+	public static function render_box( $order_or_post ): void {
+		$order = $order_or_post instanceof WC_Order ? $order_or_post : wc_get_order( $order_or_post instanceof WP_Post ? $order_or_post->ID : 0 );
 
 		if ( ! $order instanceof WC_Order || ! $order->get_id() ) {
 			echo '<p>' . esc_html__( 'Save the order first.', 'easy-pdf-word' ) . '</p>';
@@ -157,7 +161,7 @@ final class AdminOrders {
 	 * The invoices of the orders, by file name. An order whose invoice cannot
 	 * be made is left out with a warning.
 	 *
-	 * @param list<int> $ids Order IDs.
+	 * @param int[] $ids Order IDs.
 	 * @return array<string, \BiztechEG\EasyPdfWordWP\Vendor\BiztechEG\EasyPdfWord\Output\File>
 	 */
 	public static function invoices( array $ids ): array {
@@ -171,11 +175,11 @@ final class AdminOrders {
 			}
 
 			try {
-				$file                        = OrderDocument::file( 'invoice', $order );
+				$file                       = OrderDocument::file( 'invoice', $order );
 				$files[ $file->filename() ] = $file;
 			} catch ( Throwable $e ) {
 				/* translators: 1: the order number, 2: the reason. */
-				do_action( 'easy_pdf_word_warning', sprintf( __( 'The invoice of order %1$s was left out: %2$s', 'easy-pdf-word' ), $order->get_order_number(), $e->getMessage() ) );
+				do_action( 'easy_pdf_word_warning', sprintf( __( 'The invoice of order %1$s was left out: %2$s', 'easy-pdf-word' ), $order->get_order_number(), wp_specialchars_decode( $e->getMessage(), ENT_QUOTES ) ) );
 			}
 		}
 
