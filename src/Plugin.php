@@ -22,6 +22,8 @@ final class Plugin {
 		// Settings or the site language may change during a request.
 		add_action( 'switch_locale', array( Documents::class, 'reset' ) );
 		add_action( 'restore_previous_locale', array( Documents::class, 'reset' ) );
+
+		WooCommerce\WooCommerce::boot();
 	}
 
 	/** The Arabic translation ships with the plugin; others come from translate.wordpress.org. */
