@@ -74,7 +74,7 @@ final class OrderData {
 		$rin = trim( (string) Settings::get( 'tax_number' ) );
 
 		if ( '' === $rin ) {
-			throw new RuntimeException( __( 'The Egyptian invoice needs your tax registration number. Add it in the Easy PDF & Word settings.', 'easy-pdf-word' ) );
+			throw new RuntimeException( esc_html__( 'The Egyptian invoice needs your tax registration number. Add it in the Easy PDF & Word settings.', 'easy-pdf-word' ) );
 		}
 
 		$number = $refund ? Numbers::for( 'credit-note', $refund ) : Numbers::for( 'invoice', $order );
@@ -141,7 +141,7 @@ final class OrderData {
 		}
 
 		if ( ! $items ) {
-			throw new RuntimeException( __( 'This order has nothing left to deliver: all its items were refunded.', 'easy-pdf-word' ) );
+			throw new RuntimeException( esc_html__( 'This order has nothing left to deliver: all its items were refunded.', 'easy-pdf-word' ) );
 		}
 
 		$shipping = $order->has_shipping_address() ? 'shipping' : 'billing';
@@ -188,7 +188,8 @@ final class OrderData {
 	/**
 	 * The order's products, shipping and fees, before tax.
 	 *
-	 * @param bool $with_rates Add each line's VAT rate as "rate".
+	 * @param WC_Order $order      The order.
+	 * @param bool     $with_rates Add each line's VAT rate as "rate".
 	 */
 	public static function lines( WC_Order $order, bool $with_rates = false ): array {
 		$lines = array();

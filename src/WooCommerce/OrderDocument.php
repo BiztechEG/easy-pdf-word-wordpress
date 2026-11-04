@@ -40,7 +40,7 @@ final class OrderDocument {
 	 */
 	public static function make( string $type, WC_Order $order, ?WC_Order_Refund $refund = null ): Document {
 		if ( ! in_array( $type, self::TYPES, true ) ) {
-			throw new InvalidArgumentException( "Unknown document [{$type}]." );
+			throw new InvalidArgumentException( esc_html( "Unknown document [{$type}]." ) );
 		}
 
 		if ( 'credit-note' === $type && ( ! $refund || $refund->get_parent_id() !== $order->get_id() ) ) {
@@ -88,7 +88,7 @@ final class OrderDocument {
 		return 'docx' === $format ? $document->word( $filename ) : $document->pdf( $filename );
 	}
 
-	/** invoice-INV-0001.pdf: the document and its number, safe for a file name. */
+	/** The file name, such as invoice-INV-0001.pdf: the document and its number, safe for a file name. */
 	public static function filename( string $type, WC_Order $order, ?WC_Order_Refund $refund = null, string $format = 'pdf' ): string {
 		$number = match ( $type ) {
 			'invoice'     => Numbers::existing( 'invoice', $order )['number'] ?? $order->get_order_number(),
