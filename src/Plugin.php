@@ -22,9 +22,19 @@ final class Plugin {
 		// Settings or the site language may change during a request.
 		add_action( 'switch_locale', array( Documents::class, 'reset' ) );
 		add_action( 'restore_previous_locale', array( Documents::class, 'reset' ) );
+		// Every warning, from the library or the plugin, reaches the PHP error log with WP_DEBUG.
+		add_action( 'easy_pdf_word_warning', array( self::class, 'log_warning' ) );
 
 		Admin\SettingsPage::register();
 		WooCommerce\WooCommerce::boot();
+	}
+
+	/** Writes a warning to the PHP error log when WP_DEBUG is on: for developers, not visitors. */
+	public static function log_warning( $message ): void {
+		if ( defined( 'WP_DEBUG' ) && WP_DEBUG && is_string( $message ) ) {
+			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- only with WP_DEBUG.
+			error_log( 'Easy PDF & Word: ' . $message );
+		}
 	}
 
 	/** The Arabic translation ships with the plugin; others come from translate.wordpress.org. */
