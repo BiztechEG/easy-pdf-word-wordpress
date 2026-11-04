@@ -17,11 +17,101 @@ msgstr ""
 "Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
 
-#: easy-pdf-word.php:28
+#: easy-pdf-word.php:30
 msgid "Easy PDF & Word needs PHP 8.2 or newer. Ask your host to update PHP."
 msgstr ""
 "تحتاج إضافة Easy PDF & Word إلى PHP 8.2 أو أحدث. اطلب من شركة الاستضافة "
 "تحديث PHP."
+
+#: src/WooCommerce/AdminOrders.php:42 src/WooCommerce/MyAccount.php:62
+msgid "Documents"
+msgstr "المستندات"
+
+#: src/WooCommerce/AdminOrders.php:55
+msgid "Save the order first."
+msgstr "احفظ الطلب أولاً."
+
+#: src/WooCommerce/AdminOrders.php:62
+msgid "Gets its number when first opened"
+msgstr "يأخذ رقمه عند فتحه أول مرة"
+
+#. translators: %s: the refund's ID.
+#: src/WooCommerce/AdminOrders.php:68
+#, php-format
+msgid "Refund #%s"
+msgstr "استرداد رقم %s"
+
+#: src/WooCommerce/AdminOrders.php:104
+msgid "Invoice (PDF)"
+msgstr "الفاتورة (PDF)"
+
+#: src/WooCommerce/AdminOrders.php:127
+msgid "Download invoices (ZIP)"
+msgstr "تنزيل الفواتير (ZIP)"
+
+#: src/WooCommerce/AdminOrders.php:149
+msgid "None of the selected orders has an invoice."
+msgstr "لا توجد فاتورة لأي من الطلبات المحددة."
+
+#. translators: 1: the order number, 2: the reason.
+#: src/WooCommerce/AdminOrders.php:178
+#, php-format
+msgid "The invoice of order %1$s was left out: %2$s"
+msgstr "لم تُضمَّن فاتورة الطلب %1$s: %2$s"
+
+#: src/WooCommerce/Downloads.php:115 src/WooCommerce/Downloads.php:119
+msgid "This document was not found."
+msgstr "لم يُعثر على هذا المستند."
+
+#: src/WooCommerce/Downloads.php:123
+msgid "This link has expired. Go back and open the document again."
+msgstr "انتهت صلاحية هذا الرابط. ارجع وافتح المستند مرة أخرى."
+
+#: src/WooCommerce/Downloads.php:127
+msgid "Sorry, you are not allowed to download this document."
+msgstr "عذراً، لا يُسمح لك بتنزيل هذا المستند."
+
+#: src/WooCommerce/Downloads.php:136
+msgid "The document could not be made. Please contact the shop."
+msgstr "تعذّر إنشاء المستند. يُرجى التواصل مع المتجر."
+
+#. translators: 1: the document, such as Invoice, 2: the order number, 3: the reason.
+#: src/WooCommerce/Emails.php:77
+#, php-format
+msgid "%1$s of order %2$s was not attached: %3$s"
+msgstr "تعذّر إرفاق %1$s للطلب %2$s: %3$s"
+
+#: src/WooCommerce/MyAccount.php:30 src/WooCommerce/OrderDocument.php:27
+msgid "Invoice"
+msgstr "الفاتورة"
+
+#: src/WooCommerce/OrderData.php:77
+msgid ""
+"The Egyptian invoice needs your tax registration number. Add it in the Easy "
+"PDF & Word settings."
+msgstr ""
+"تحتاج الفاتورة المصرية إلى رقم التسجيل الضريبي. أضفه في إعدادات Easy PDF & "
+"Word."
+
+#: src/WooCommerce/OrderData.php:144
+msgid "This order has nothing left to deliver: all its items were refunded."
+msgstr "لم يتبقَّ في هذا الطلب شيء لتسليمه: استُردت جميع أصنافه."
+
+#: src/WooCommerce/OrderData.php:198
+msgid "Customer"
+msgstr "العميل"
+
+#: src/WooCommerce/OrderData.php:339
+msgid "Refund"
+msgstr "استرداد"
+
+#: src/WooCommerce/OrderDocument.php:28
+msgid "Credit note"
+msgstr "إشعار دائن"
+
+#: src/WooCommerce/OrderDocument.php:29
+msgid "Delivery note"
+msgstr "إذن تسليم"
 
 #: src/bootstrap.php:16
 msgid ""
