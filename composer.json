@@ -1,0 +1,63 @@
+{
+    "name": "biztecheg/easy-pdf-word-wordpress",
+    "description": "WordPress plugin for Easy PDF & Word: PDF and Word documents with first-class Arabic, and WooCommerce invoices.",
+    "homepage": "https://easypdf.biztech-eg.com",
+    "license": "GPL-2.0-or-later",
+    "type": "wordpress-plugin",
+    "authors": [
+        {
+            "name": "BizTech",
+            "homepage": "https://github.com/BiztechEG"
+        }
+    ],
+    "support": {
+        "docs": "https://easypdf.biztech-eg.com",
+        "issues": "https://github.com/BiztechEG/easy-pdf-word-wordpress/issues",
+        "source": "https://github.com/BiztechEG/easy-pdf-word-wordpress"
+    },
+    "require": {
+        "php": "^8.2",
+        "biztecheg/easy-pdf-word": "^1.5",
+        "mpdf/mpdf": "^8.2.4",
+        "phpoffice/phpword": "^1.4"
+    },
+    "require-dev": {
+        "brianhenryie/strauss": "^0.22",
+        "johnpbloch/wordpress-core": "^7.0",
+        "phpunit/phpunit": "^9.6",
+        "wp-phpunit/wp-phpunit": "^7.0",
+        "yoast/phpunit-polyfills": "^2.0 || ^3.0 || ^4.0"
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "BiztechEG\\EasyPdfWordWP\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "prefix": [
+            "strauss --no-interaction",
+            "@php bin/copy-assets.php"
+        ],
+        "test": "phpunit",
+        "build": "bash bin/build-zip.sh"
+    },
+    "extra": {
+        "strauss": {
+            "target_directory": "vendor-prefixed",
+            "namespace_prefix": "BiztechEG\\EasyPdfWordWP\\Vendor\\",
+            "classmap_prefix": "EasyPdfWordWP_Vendor_",
+            "constant_prefix": "EASY_PDF_WORD_VENDOR_",
+            "delete_vendor_packages": false,
+            "include_modified_date": false,
+            "include_author": false
+        }
+    },
+    "config": {
+        "platform": {
+            "php": "8.2.0"
+        },
+        "sort-packages": true
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
