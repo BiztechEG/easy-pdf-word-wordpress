@@ -9,9 +9,9 @@ use BiztechEG\EasyPdfWordWP\Documents;
 
 if ( ! function_exists( 'easy_pdf_word' ) ) {
 	/**
-	 * The document factory, set up from the plugin's settings:
+	 * The document factory, set up from the plugin's settings.
 	 *
-	 *     easy_pdf_word()->template( 'invoice', $data )->pdf( 'invoice.pdf' )->send();
+	 * For example: easy_pdf_word()->template( 'invoice', $data )->pdf( 'invoice.pdf' )->send();
 	 *
 	 * The library is bundled under the prefix BiztechEG\EasyPdfWordWP\Vendor\, so the
 	 * factory is a BiztechEG\EasyPdfWordWP\Vendor\BiztechEG\EasyPdfWord\DocumentFactory.

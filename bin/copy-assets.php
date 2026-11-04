@@ -6,7 +6,7 @@
  * files among the templates name the library's classes, so they get the
  * prefix too.
  *
- * php bin/copy-assets.php [project folder]
+ * Usage: php bin/copy-assets.php [project folder]
  */
 
 $root     = rtrim( $argv[1] ?? dirname( __DIR__ ), '/' );
@@ -17,7 +17,9 @@ $prefix   = 'BiztechEG\\EasyPdfWordWP\\Vendor\\';
 /**
  * Copies a folder, keeping only the files $keep accepts.
  *
- * @param callable(string): bool $keep Gets the file name.
+ * @param string   $from The folder to copy.
+ * @param string   $to   Where to copy it.
+ * @param callable $keep Gets the file name, returns whether to copy it.
  */
 function easy_pdf_word_copy_folder( string $from, string $to, callable $keep ): void {
 	if ( ! is_dir( $from ) ) {
@@ -42,7 +44,7 @@ function easy_pdf_word_copy_folder( string $from, string $to, callable $keep ): 
 	}
 }
 
-$all = static fn ( string $name ): bool => true;
+$all = static fn (): bool => true;
 
 // The library: templates, languages and fonts.
 $library = $prefixed . '/biztecheg/easy-pdf-word/resources';

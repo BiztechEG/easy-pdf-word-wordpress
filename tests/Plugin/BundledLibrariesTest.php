@@ -47,7 +47,7 @@ class BundledLibrariesTest extends WP_UnitTestCase {
 			"<?php use BiztechEG\\EasyPdfWord\\Support\\Currency; ?>\n<p>decimals: <?= Currency::decimals('KWD') ?></p>"
 		);
 
-		add_filter( 'easy_pdf_word_template_paths', fn ( array $paths ) => array( $folder ) );
+		add_filter( 'easy_pdf_word_template_paths', fn () => array( $folder ) );
 
 		$html = easy_pdf_word()->template( 'price' )->toHtml();
 

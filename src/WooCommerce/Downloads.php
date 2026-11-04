@@ -88,7 +88,7 @@ final class Downloads {
 		return (bool) apply_filters( 'easy_pdf_word_customer_can_download', $allowed, $type, $order, $user_id );
 	}
 
-	/** admin-post.php?action=easy_pdf_word_document&document=invoice&order=123&_wpnonce=... */
+	/** Sends the file of admin-post.php?action=easy_pdf_word_document&document=invoice&order=123&_wpnonce=... */
 	public static function handle(): void {
 		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- request() checks the nonce once the order is known.
 		self::request( wp_unslash( $_GET ) )->send();

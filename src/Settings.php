@@ -16,34 +16,34 @@ final class Settings {
 	public static function defaults(): array {
 		return array(
 			// The company on every document. Empty fields use the site name and WooCommerce's store address.
-			'company_name'         => '',
-			'company_address'      => '',
-			'company_phone'        => '',
-			'company_email'        => '',
+			'company_name'       => '',
+			'company_address'    => '',
+			'company_phone'      => '',
+			'company_email'      => '',
 			// A media library image.
-			'logo'                 => 0,
-			'primary_color'        => '#0F766E',
+			'logo'               => 0,
+			'primary_color'      => '#0F766E',
 			// '' follows the site language (and the customer's, in WooCommerce emails).
-			'language'             => '',
-			'numerals'             => 'latin',
-			'font'                 => 'cairo',
+			'language'           => '',
+			'numerals'           => 'latin',
+			'font'               => 'cairo',
 			// mpdf, or gotenberg: Chromium as a service at gotenberg_url.
-			'engine'               => 'mpdf',
-			'gotenberg_url'        => '',
+			'engine'             => 'mpdf',
+			'gotenberg_url'      => '',
 			// standard: the tax invoice; zatca: with the Saudi ZATCA QR; egypt: the Egyptian e-invoice layout.
-			'invoice_type'         => 'standard',
+			'invoice_type'       => 'standard',
 			// The seller's VAT number (Saudi) or tax registration number (Egypt).
-			'tax_number'           => '',
-			'invoice_prefix'       => 'INV-',
-			'credit_note_prefix'   => 'CN-',
+			'tax_number'         => '',
+			'invoice_prefix'     => 'INV-',
+			'credit_note_prefix' => 'CN-',
 			// Digits of the sequential number: 4 gives INV-0001.
-			'number_padding'       => 4,
+			'number_padding'     => 4,
 			// Order statuses in which the customer can download the invoice.
-			'invoice_statuses'     => array( 'processing', 'completed' ),
+			'invoice_statuses'   => array( 'processing', 'completed' ),
 			// The documents customers can download from My account.
-			'customer_documents'   => array( 'invoice', 'credit-note' ),
+			'customer_documents' => array( 'invoice', 'credit-note' ),
 			// WooCommerce emails each document is attached to.
-			'attach'               => array(
+			'attach'             => array(
 				'invoice'       => array( 'customer_completed_order', 'customer_invoice' ),
 				'credit-note'   => array( 'customer_refunded_order' ),
 				'delivery-note' => array(),
