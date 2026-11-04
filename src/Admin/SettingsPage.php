@@ -126,7 +126,8 @@ final class SettingsPage {
 		}
 
 		if ( isset( $input['primary_color'] ) ) {
-			$settings['primary_color'] = sanitize_hex_color( (string) $input['primary_color'] ) ?: Settings::defaults()['primary_color'];
+			$color                     = sanitize_hex_color( (string) $input['primary_color'] );
+			$settings['primary_color'] = is_string( $color ) && '' !== $color ? $color : Settings::defaults()['primary_color'];
 		}
 
 		$choices = array(
@@ -190,14 +191,17 @@ final class SettingsPage {
 		}
 
 		// The next numbers are kept by the sequences, not in the settings.
-		foreach ( array( 'invoice' => 'next_invoice', 'credit-note' => 'next_credit_note' ) as $sequence => $key ) {
+		foreach ( array(
+			'invoice'     => 'next_invoice',
+			'credit-note' => 'next_credit_note',
+		) as $sequence => $key ) {
 			if ( ! isset( $input[ $key ] ) || '' === (string) $input[ $key ] ) {
 				continue;
 			}
 
 			$next = absint( $input[ $key ] );
 
-			if ( $next === Numbers::peek( $sequence ) ) {
+			if ( Numbers::peek( $sequence ) === $next ) {
 				continue;
 			}
 
@@ -352,7 +356,7 @@ final class SettingsPage {
 		);
 	}
 
-	/** admin-post.php?action=easy_pdf_word_preview: the sample invoice, shown in the browser. */
+	/** Shows the sample invoice in the browser: admin-post.php?action=easy_pdf_word_preview. */
 	public static function preview(): void {
 		self::sample_file()->send( inline: true );
 		exit;
@@ -462,9 +466,9 @@ final class SettingsPage {
 		echo '</tbody></table>';
 	}
 
-	private static function row( string $key, string $label, string $field, string $description = '', string $class = '' ): void {
-		printf( '<tr class="%s"><th scope="row"><label for="%s">%s</label></th><td>', esc_attr( $class ), esc_attr( self::id( $key ) ), esc_html( $label ) );
-		echo $field; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- built from escaped parts by the callers.
+	private static function row( string $key, string $label, string $field, string $description = '', string $row_class = '' ): void {
+		printf( '<tr class="%s"><th scope="row"><label for="%s">%s</label></th><td>', esc_attr( $row_class ), esc_attr( self::id( $key ) ), esc_html( $label ) );
+		echo wp_kses( $field, self::allowed_html() );
 
 		if ( '' !== $description ) {
 			echo '<p class="description">' . esc_html( $description ) . '</p>';
@@ -473,7 +477,58 @@ final class SettingsPage {
 		echo '</td></tr>';
 	}
 
-	private static function text( string $key, string $label, array $settings, string $placeholder = '', string $type = 'text', string $description = '', string $class = '' ): void {
+	/** The form fields the settings page prints, for wp_kses(). */
+	private static function allowed_html(): array {
+		$common = array(
+			'id'    => true,
+			'name'  => true,
+			'class' => true,
+		);
+
+		return array(
+			'input'    => $common + array(
+				'type'        => true,
+				'value'       => true,
+				'placeholder' => true,
+				'min'         => true,
+				'checked'     => true,
+			),
+			'select'   => $common,
+			'option'   => array(
+				'value'    => true,
+				'selected' => true,
+			),
+			'textarea' => $common + array(
+				'rows'        => true,
+				'placeholder' => true,
+			),
+			'fieldset' => array(),
+			'legend'   => array( 'class' => true ),
+			'label'    => array(),
+			'br'       => array(),
+			'div'      => array( 'class' => true ),
+			'button'   => array(
+				'type'        => true,
+				'class'       => true,
+				'hidden'      => true,
+				'data-title'  => true,
+				'data-button' => true,
+			),
+			'img'      => array(
+				'src'      => true,
+				'srcset'   => true,
+				'sizes'    => true,
+				'alt'      => true,
+				'width'    => true,
+				'height'   => true,
+				'class'    => true,
+				'loading'  => true,
+				'decoding' => true,
+			),
+		);
+	}
+
+	private static function text( string $key, string $label, array $settings, string $placeholder = '', string $type = 'text', string $description = '', string $row_class = '' ): void {
 		$field = sprintf(
 			'<input type="%1$s" id="%2$s" name="%3$s" value="%4$s" placeholder="%5$s" class="%6$s">',
 			esc_attr( $type ),
@@ -484,7 +539,7 @@ final class SettingsPage {
 			in_array( $type, array( 'number', 'color' ), true ) ? 'small-text' : 'regular-text'
 		);
 
-		self::row( $key, $label, $field, $description, $class );
+		self::row( $key, $label, $field, $description, $row_class );
 	}
 
 	private static function number( string $key, string $label, int $value ): void {
