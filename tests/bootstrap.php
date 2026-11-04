@@ -40,11 +40,35 @@ $tests_dir = getenv( 'WP_PHPUNIT__DIR' ) ?: $root . '/vendor/wp-phpunit/wp-phpun
 
 require $tests_dir . '/includes/functions.php';
 
+// WooCommerce, when WC_DIR names its folder (CI downloads its release zip).
+$woocommerce = getenv( 'WC_DIR' ) ? rtrim( getenv( 'WC_DIR' ), '/' ) . '/woocommerce.php' : '';
+
+if ( $woocommerce && ! is_file( $woocommerce ) ) {
+	fwrite( STDERR, "WC_DIR is set, but {$woocommerce} does not exist.\n" );
+	exit( 1 );
+}
+
 tests_add_filter(
 	'muplugins_loaded',
-	static function () use ( $root ) {
+	static function () use ( $root, $woocommerce ) {
+		if ( $woocommerce ) {
+			require $woocommerce;
+		}
+
 		require $root . '/easy-pdf-word.php';
 	}
 );
+
+if ( $woocommerce ) {
+	// WooCommerce's tables, roles and pages, as its own test suite installs them.
+	tests_add_filter(
+		'setup_theme',
+		static function () {
+			WC_Install::install();
+			$GLOBALS['wp_roles'] = null; // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited -- reload the roles WooCommerce added.
+			wp_roles();
+		}
+	);
+}
 
 require $tests_dir . '/includes/bootstrap.php';

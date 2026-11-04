@@ -15,8 +15,96 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: easy-pdf-word.php:28
+#: easy-pdf-word.php:30
 msgid "Easy PDF & Word needs PHP 8.2 or newer. Ask your host to update PHP."
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:42 src/WooCommerce/MyAccount.php:62
+msgid "Documents"
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:55
+msgid "Save the order first."
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:62
+msgid "Gets its number when first opened"
+msgstr ""
+
+#. translators: %s: the refund's ID.
+#: src/WooCommerce/AdminOrders.php:68
+#, php-format
+msgid "Refund #%s"
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:104
+msgid "Invoice (PDF)"
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:127
+msgid "Download invoices (ZIP)"
+msgstr ""
+
+#: src/WooCommerce/AdminOrders.php:149
+msgid "None of the selected orders has an invoice."
+msgstr ""
+
+#. translators: 1: the order number, 2: the reason.
+#: src/WooCommerce/AdminOrders.php:178
+#, php-format
+msgid "The invoice of order %1$s was left out: %2$s"
+msgstr ""
+
+#: src/WooCommerce/Downloads.php:115 src/WooCommerce/Downloads.php:119
+msgid "This document was not found."
+msgstr ""
+
+#: src/WooCommerce/Downloads.php:123
+msgid "This link has expired. Go back and open the document again."
+msgstr ""
+
+#: src/WooCommerce/Downloads.php:127
+msgid "Sorry, you are not allowed to download this document."
+msgstr ""
+
+#: src/WooCommerce/Downloads.php:136
+msgid "The document could not be made. Please contact the shop."
+msgstr ""
+
+#. translators: 1: the document, such as Invoice, 2: the order number, 3: the reason.
+#: src/WooCommerce/Emails.php:77
+#, php-format
+msgid "%1$s of order %2$s was not attached: %3$s"
+msgstr ""
+
+#: src/WooCommerce/MyAccount.php:30 src/WooCommerce/OrderDocument.php:27
+msgid "Invoice"
+msgstr ""
+
+#: src/WooCommerce/OrderData.php:77
+msgid ""
+"The Egyptian invoice needs your tax registration number. Add it in the Easy "
+"PDF & Word settings."
+msgstr ""
+
+#: src/WooCommerce/OrderData.php:144
+msgid "This order has nothing left to deliver: all its items were refunded."
+msgstr ""
+
+#: src/WooCommerce/OrderData.php:198
+msgid "Customer"
+msgstr ""
+
+#: src/WooCommerce/OrderData.php:339
+msgid "Refund"
+msgstr ""
+
+#: src/WooCommerce/OrderDocument.php:28
+msgid "Credit note"
+msgstr ""
+
+#: src/WooCommerce/OrderDocument.php:29
+msgid "Delivery note"
 msgstr ""
 
 #: src/bootstrap.php:16

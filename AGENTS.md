@@ -22,6 +22,12 @@ License GPL-2.0-or-later (wordpress.org requires GPL, and mPDF is GPL).
   autoloader for `BiztechEG\EasyPdfWordWP\`.
 - `src/functions.php` — public functions (`easy_pdf_word()`).
 - `src/Documents.php` — builds the core's factory from WordPress settings.
+- `src/Settings.php` — the plugin's settings (option `easy_pdf_word_settings`) with defaults.
+- `src/WooCommerce/` — loaded only when WooCommerce is active:
+  `OrderData` (order → template data), `Numbers` (sequential invoice and
+  credit note numbers in order meta), `OrderDocument` (type → template),
+  `Downloads` (nonce + permission checked links via admin-post.php),
+  `Emails`, `AdminOrders` (order box, list button, bulk ZIP), `MyAccount`.
 - `vendor-prefixed/` — built by Strauss (`composer prefix`), not committed.
   Every bundled namespace is under `BiztechEG\EasyPdfWordWP\Vendor\`, so other
   plugins' copies of mPDF or PhpWord never clash with ours.
@@ -31,7 +37,9 @@ License GPL-2.0-or-later (wordpress.org requires GPL, and mPDF is GPL).
 
 See CONTRIBUTING.md: `composer install && composer prefix`, a MySQL/MariaDB
 database, then `composer test`. Tests use WordPress's own test suite
-(`wp-phpunit/wp-phpunit` with `johnpbloch/wordpress-core`).
+(`wp-phpunit/wp-phpunit` with `johnpbloch/wordpress-core`). The WooCommerce
+tests run when `WC_DIR` names a WooCommerce folder (CI downloads the release
+zip from GitHub); without it they are skipped.
 
 ## Rules from the maintainer
 

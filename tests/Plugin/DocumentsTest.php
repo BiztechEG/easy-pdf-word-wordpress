@@ -53,13 +53,13 @@ class DocumentsTest extends WP_UnitTestCase {
 	public function test_documents_follow_the_site_language(): void {
 		$this->assertSame( 'en', Documents::locale() );
 
-		add_filter( 'determine_locale', fn () => 'ar' );
+		add_filter( 'locale', fn () => 'ar' );
 		$this->assertSame( 'ar', Documents::locale() );
 
-		add_filter( 'determine_locale', fn () => 'tr_TR', 11 );
+		add_filter( 'locale', fn () => 'tr_TR', 11 );
 		$this->assertSame( 'tr', Documents::locale() );
 
-		add_filter( 'determine_locale', fn () => 'fr_FR', 12 );
+		add_filter( 'locale', fn () => 'fr_FR', 12 );
 		$this->assertSame( 'en', Documents::locale(), 'A language without templates falls back to English.' );
 
 		$this->assertSame( 'en', Documents::config()['locale'] );
@@ -128,7 +128,7 @@ class DocumentsTest extends WP_UnitTestCase {
 	}
 
 	public function test_an_arabic_pdf_invoice(): void {
-		add_filter( 'determine_locale', fn () => 'ar' );
+		add_filter( 'locale', fn () => 'ar' );
 
 		$file = easy_pdf_word()->template( 'invoice', self::invoice() )->pdf( 'invoice.pdf' );
 

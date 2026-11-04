@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   tests:
-    name: PHP ${{ matrix.php }} / WordPress ${{ matrix.wp }}
+    name: PHP ${{ matrix.php }} / WordPress ${{ matrix.wp }} / WooCommerce ${{ matrix.wc }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -18,9 +18,11 @@ jobs:
       matrix:
         php: ['8.2', '8.3', '8.4', '8.5']
         wp: ['7.1']
+        wc: ['11.2.1']
         include:
           - php: '8.2'
             wp: '7.0'
+            wc: '11.1.2'
 
     services:
       mysql:
@@ -55,6 +57,12 @@ jobs:
 
       - name: Prefix the libraries
         run: composer prefix
+
+      - name: Download WooCommerce ${{ matrix.wc }}
+        run: |
+          curl -sSfL --retry 3 -o /tmp/woocommerce.zip https://github.com/woocommerce/woocommerce/releases/download/${{ matrix.wc }}/woocommerce.zip
+          unzip -q /tmp/woocommerce.zip -d /tmp
+          echo "WC_DIR=/tmp/woocommerce" >> "$GITHUB_ENV"
 
       - name: Tests
         run: composer test
