@@ -128,6 +128,11 @@ final class Numbers {
 		return $number;
 	}
 
+	/** The number the sequence gives next. */
+	public static function peek( string $sequence ): int {
+		return (int) get_option( self::sequence_option( $sequence ), 0 ) + 1;
+	}
+
 	/** Start a sequence again from $number, for example at the start of a year. */
 	public static function restart( string $sequence, int $number ): void {
 		update_option( self::sequence_option( $sequence ), max( 0, $number - 1 ), false );
