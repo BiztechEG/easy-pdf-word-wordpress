@@ -148,10 +148,5 @@ final class Documents {
 		 * @param string $message The warning.
 		 */
 		do_action( 'easy_pdf_word_warning', $message );
-
-		if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
-			// phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_error_log -- only with WP_DEBUG.
-			error_log( 'Easy PDF & Word: ' . $message );
-		}
 	}
 }

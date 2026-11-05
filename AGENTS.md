@@ -37,6 +37,9 @@ License GPL-2.0-or-later (wordpress.org requires GPL, and mPDF is GPL).
   Every bundled namespace is under `BiztechEG\EasyPdfWordWP\Vendor\`, so other
   plugins' copies of mPDF or PhpWord never clash with ours.
 - `bin/build-zip.sh` — the release zip.
+- `.wordpress-org/` — screenshots for the plugin directory (`screenshot-N.png`, captions under
+  `== Screenshots ==` in `readme.txt`). BizTech uploads them to the SVN `assets/` folder; they
+  stay out of the zip.
 
 ## Running tests
 

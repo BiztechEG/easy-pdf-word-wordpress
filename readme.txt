@@ -94,3 +94,9 @@ To WordPress's temp folder, in an `easy-pdf-word` folder. On shared hosting, set
 
 = 1.0.0 =
 * First release.
+* WooCommerce: an invoice for each order (tax invoice, with the ZATCA QR code, or the Egyptian e-invoice layout), a credit note for each refund and a delivery note, as PDF or Word.
+* Sequential invoice and credit note numbers, kept with the order.
+* Buttons on the order page, in the orders list (with a ZIP of the selected orders' invoices) and in My account; documents attached to WooCommerce emails.
+* A settings page for the company, logo, language, digits, font, PDF engine, numbering, customers and emails, with a sample invoice.
+* `easy_pdf_word()` and hooks for developers; templates in the theme's `easy-pdf-word` folder.
+* Arabic translation.
